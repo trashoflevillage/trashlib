@@ -1,0 +1,37 @@
+{
+	"schemaVersion": 1,
+	"id": "trashlib",
+	"version": "${version}",
+	"name": "Trashlib",
+	"description": "I hated boilerplate enough to make a library mod.",
+	"authors": [
+		"trashoflevillage"
+	],
+	"contact": {
+		"homepage": "https://fabricmc.net/",
+		"sources": "https://github.com/FabricMC/fabric-example-mod"
+	},
+	"license": "MIT",
+	"icon": "assets/trashlib/icon.png",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+			"io.github.trashoflevillage.trashlib.TrashLib"
+		],
+		"fabric-datagen": [
+			"io.github.trashoflevillage.trashlib.TrashLibDataGenerator"
+		]
+	},
+	"mixins": [
+		"trashlib.mixins.json"
+	],
+	"depends": {
+		"fabricloader": ">=0.16.10",
+		"minecraft": "~1.21.4",
+		"java": ">=21",
+		"fabric-api": "*"
+	},
+	"suggests": {
+		"another-mod": "*"
+	}
+}
