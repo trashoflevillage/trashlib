@@ -8,8 +8,8 @@
 		"trashoflevillage"
 	],
 	"contact": {
-		"homepage": "https://fabricmc.net/",
-		"sources": "https://github.com/FabricMC/fabric-example-mod"
+		"homepage": "https://modrinth.com/mod/trash-lib",
+		"sources": "https://github.com/trashoflevillage/trashlib"
 	},
 	"license": "MIT",
 	"icon": "assets/trashlib/icon.png",
