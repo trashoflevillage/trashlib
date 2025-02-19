@@ -12,18 +12,18 @@ import net.minecraft.util.Identifier;
 import java.util.function.Function;
 
 public class ItemInitializer {
-    public static String CURRENT_MOD_ID;
+    public final String CURRENT_MOD_ID;
 
-    public static void setCurrentModId(String newId) {
-        CURRENT_MOD_ID = newId;
+    public ItemInitializer(String currentModId) {
+        CURRENT_MOD_ID = currentModId;
     }
 
-    public static Item registerItem(String id, Function<Item.Settings, Item> factory) {
+    public Item registerItem(String id, Function<Item.Settings, Item> factory) {
         return registerItem(id, factory, new Item.Settings());
     }
 
 
-    public static <I extends Item> I registerItem(String name, Function<Item.Settings, I> factory, Item.Settings settings) {
+    public <I extends Item> I registerItem(String name, Function<Item.Settings, I> factory, Item.Settings settings) {
         RegistryKey<Item> key = RegistryKey.of(RegistryKeys.ITEM, Identifier.of(CURRENT_MOD_ID, name));
         I item = factory.apply(settings.registryKey(key));
 
@@ -34,7 +34,7 @@ public class ItemInitializer {
         return Registry.register(Registries.ITEM, key, item);
     }
 
-    public static BlockItem registerBlockItem(String name, Block block) {
+    public BlockItem registerBlockItem(String name, Block block) {
         return registerItem(name, settings -> new BlockItem(block, settings), new Item.Settings().useBlockPrefixedTranslationKey());
     }
 }
