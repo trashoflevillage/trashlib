@@ -11,7 +11,7 @@ import net.minecraft.util.Identifier;
 
 import java.util.function.Function;
 
-public class ItemInitializer extends Initializer {
+public class ItemInitializer extends AbstractInitializer {
     public ItemInitializer(String modId) {
         super(modId);
     }

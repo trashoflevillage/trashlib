@@ -6,7 +6,7 @@ import net.minecraft.util.Identifier;
 import net.minecraft.world.gen.feature.Feature;
 import net.minecraft.world.gen.feature.FeatureConfig;
 
-public class FeatureInitializer extends Initializer {
+public class FeatureInitializer extends AbstractInitializer {
     public FeatureInitializer(String modId) {
         super(modId);
     }

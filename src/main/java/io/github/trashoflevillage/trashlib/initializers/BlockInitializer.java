@@ -10,7 +10,7 @@ import net.minecraft.util.Identifier;
 
 import java.util.function.Function;
 
-public class BlockInitializer extends Initializer {
+public class BlockInitializer extends AbstractInitializer {
     public BlockInitializer(String modId) {
         super(modId);
     }

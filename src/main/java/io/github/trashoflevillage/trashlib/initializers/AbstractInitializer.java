@@ -1,9 +1,9 @@
 package io.github.trashoflevillage.trashlib.initializers;
 
-abstract class Initializer {
+abstract class AbstractInitializer {
     public final String MOD_ID;
 
-    Initializer(String modId) {
+    AbstractInitializer(String modId) {
         MOD_ID = modId;
     }
 }
