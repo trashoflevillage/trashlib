@@ -11,7 +11,7 @@ public class FeatureInitializer extends Initializer {
         super(modId);
     }
 
-    private <C extends FeatureConfig, F extends Feature<C>> F register(String name, F feature) {
+    public <C extends FeatureConfig, F extends Feature<C>> F register(String name, F feature) {
         return Registry.register(Registries.FEATURE, Identifier.of(MOD_ID, name), feature);
     }
 }
