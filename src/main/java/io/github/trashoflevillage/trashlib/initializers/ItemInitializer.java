@@ -12,7 +12,7 @@ import net.minecraft.util.Identifier;
 import java.util.function.Function;
 
 public class ItemInitializer extends Initializer {
-    ItemInitializer(String modId) {
+    public ItemInitializer(String modId) {
         super(modId);
     }
 
