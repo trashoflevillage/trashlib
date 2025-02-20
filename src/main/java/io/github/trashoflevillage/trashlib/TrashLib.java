@@ -15,6 +15,6 @@ public class TrashLib implements ModInitializer {
 
 	@Override
 	public void onInitialize() {
-
+		ModFeatures.register();
 	}
 }
