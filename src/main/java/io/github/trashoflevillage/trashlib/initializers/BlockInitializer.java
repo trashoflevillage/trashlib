@@ -1,6 +1,5 @@
-package io.github.trashoflevillage.trashlib.blocks;
+package io.github.trashoflevillage.trashlib.initializers;
 
-import io.github.trashoflevillage.trashlib.items.ItemInitializer;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
 import net.minecraft.registry.Registries;
@@ -11,14 +10,12 @@ import net.minecraft.util.Identifier;
 
 import java.util.function.Function;
 
-public class BlockInitializer {
-    public final String MOD_ID;
-
+public class BlockInitializer extends Initializer {
     public BlockInitializer(String modId) {
-        MOD_ID = modId;
+        super(modId);
     }
 
-    public <B extends Block> B registerBlock(String name, Function<AbstractBlock.Settings, B> factory, AbstractBlock.Settings settings, boolean hasBlockItem) {
+    public <B extends Block> B register(String name, Function<AbstractBlock.Settings, B> factory, AbstractBlock.Settings settings, boolean hasBlockItem) {
         RegistryKey<Block> key = RegistryKey.of(RegistryKeys.BLOCK, Identifier.of(MOD_ID, name));
         B block = factory.apply(settings.registryKey(key));
 
@@ -28,7 +25,7 @@ public class BlockInitializer {
         return Registry.register(Registries.BLOCK, key, block);
     }
 
-    public <B extends Block> B registerBlock(String name, Function<AbstractBlock.Settings, B> factory, AbstractBlock.Settings settings) {
-        return registerBlock(name, factory, settings, true);
+    public <B extends Block> B register(String name, Function<AbstractBlock.Settings, B> factory, AbstractBlock.Settings settings) {
+        return register(name, factory, settings, true);
     }
 }
