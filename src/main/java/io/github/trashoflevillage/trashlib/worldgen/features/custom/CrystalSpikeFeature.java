@@ -53,9 +53,11 @@ public class CrystalSpikeFeature extends Feature<SimpleBlockFeatureConfig> {
                 for (int x = -i; x <= i; x++) {
                     for (int y = -i; y <= i; y++) {
                         for (int z = -i; z <= i; z++) {
-                            if ((!(x == -i || y == -i || z == -i || x == i || y == i || z == i)) || rng.nextBoolean()) {
-                                setBlockStateIf(world, currentPos.add(x, y, z), config.toPlace().get(rng, currentPos), predicate);
-                                setBlockStateIf(world, negPos.add(x, y, z), config.toPlace().get(rng, currentPos), predicate);
+                            if ((!(x == -i || y == -i || z == -i || x == i || y == i || z == i)) || rng.nextBetween(0, 3) <= 2) {
+                                if (world.isValidForSetBlock(currentPos.add(x, y, z)))
+                                    setBlockStateIf(world, currentPos.add(x, y, z), config.toPlace().get(rng, currentPos), predicate);
+                                if (world.isValidForSetBlock(negPos.add(x, y, z)))
+                                    setBlockStateIf(world, negPos.add(x, y, z), config.toPlace().get(rng, currentPos), predicate);
                             }
                         }
                     }
