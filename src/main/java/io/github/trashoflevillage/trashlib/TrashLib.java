@@ -1,5 +1,6 @@
 package io.github.trashoflevillage.trashlib;
 
+import io.github.trashoflevillage.trashlib.worldgen.features.TrashlibFeatures;
 import net.fabricmc.api.ModInitializer;
 
 import org.slf4j.Logger;
@@ -15,6 +16,6 @@ public class TrashLib implements ModInitializer {
 
 	@Override
 	public void onInitialize() {
-		ModFeatures.register();
+		TrashlibFeatures.register();
 	}
 }

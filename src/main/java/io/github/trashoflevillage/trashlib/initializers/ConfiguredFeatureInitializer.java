@@ -10,7 +10,7 @@ public class ConfiguredFeatureInitializer extends AbstractInitializer {
         super(modId);
     }
 
-    public RegistryKey<ConfiguredFeature<?, ?>> register(String name) {
+    public RegistryKey<ConfiguredFeature<?, ?>> registerKey(String name) {
         return RegistryKey.of(RegistryKeys.CONFIGURED_FEATURE, Identifier.of(MOD_ID, name));
     }
 }

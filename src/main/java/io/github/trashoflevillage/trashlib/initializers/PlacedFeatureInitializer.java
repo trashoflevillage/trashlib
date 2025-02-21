@@ -10,7 +10,7 @@ public class PlacedFeatureInitializer extends AbstractInitializer {
         super(modId);
     }
 
-    public RegistryKey<PlacedFeature> register(String name) {
+    public RegistryKey<PlacedFeature> registerKey(String name) {
         return RegistryKey.of(RegistryKeys.PLACED_FEATURE, Identifier.of(MOD_ID, name));
     }
 }
