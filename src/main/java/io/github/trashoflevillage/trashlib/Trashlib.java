@@ -3,6 +3,7 @@ package io.github.trashoflevillage.trashlib;
 import io.github.trashoflevillage.trashlib.worldgen.features.TrashlibFeatures;
 import net.fabricmc.api.ModInitializer;
 
+import net.fabricmc.loader.api.FabricLoader;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -17,6 +18,6 @@ public class Trashlib implements ModInitializer {
 	@Override
 	public void onInitialize() {
 		TrashlibFeatures.registerAll();
-		TrashlibCommands.registerAll();
+		if (FabricLoader.getInstance().isDevelopmentEnvironment()) TrashlibCommands.registerAll();
 	}
 }

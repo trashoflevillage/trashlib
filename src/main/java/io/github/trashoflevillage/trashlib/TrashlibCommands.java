@@ -13,32 +13,30 @@ import org.apache.commons.lang3.SystemProperties;
 ///
 class TrashlibCommands {
     public static void registerAll() {
-        if (FabricLoader.getInstance().isDevelopmentEnvironment()) {
-            CommandRegistrationCallback.EVENT.register((dispatcher, registryAccess, environment) -> {
-                dispatcher.register(CommandManager.literal("sphere")
-                        .executes(context -> {
-                            GenHelper.sphere(
-                                    context.getSource().getWorld(),
-                                    context.getSource().getPlayer().getBlockPos(),
-                                    Blocks.MOSSY_COBBLESTONE::getDefaultState,
-                                    20
-                            );
-                            return 1;
-                        }));
-            });
+        CommandRegistrationCallback.EVENT.register((dispatcher, registryAccess, environment) -> {
+            dispatcher.register(CommandManager.literal("sphere")
+                    .executes(context -> {
+                        GenHelper.sphere(
+                                context.getSource().getWorld(),
+                                context.getSource().getPlayer().getBlockPos(),
+                                (world, pos) -> Blocks.MOSSY_COBBLESTONE.getDefaultState(),
+                                20
+                        );
+                        return 1;
+                    }));
+        });
 
-            CommandRegistrationCallback.EVENT.register((dispatcher, registryAccess, environment) -> {
-                dispatcher.register(CommandManager.literal("hollow_sphere")
-                        .executes(context -> {
-                            GenHelper.hollowSphere(
-                                    context.getSource().getWorld(),
-                                    context.getSource().getPlayer().getBlockPos(),
-                                    Blocks.MOSSY_COBBLESTONE::getDefaultState,
-                                    20
-                            );
-                            return 1;
-                        }));
-            });
-        }
+        CommandRegistrationCallback.EVENT.register((dispatcher, registryAccess, environment) -> {
+            dispatcher.register(CommandManager.literal("hollow_sphere")
+                    .executes(context -> {
+                        GenHelper.hollowSphere(
+                                context.getSource().getWorld(),
+                                context.getSource().getPlayer().getBlockPos(),
+                                (world, pos) -> Blocks.MOSSY_COBBLESTONE.getDefaultState(),
+                                20
+                        );
+                        return 1;
+                    }));
+        });
     }
 }
