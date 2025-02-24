@@ -16,10 +16,10 @@
 	"environment": "*",
 	"entrypoints": {
 		"main": [
-			"io.github.trashoflevillage.trashlib.TrashLib"
+			"io.github.trashoflevillage.trashlib.Trashlib"
 		],
 		"fabric-datagen": [
-			"io.github.trashoflevillage.trashlib.TrashLibDataGenerator"
+			"io.github.trashoflevillage.trashlib.TrashlibDataGenerator"
 		]
 	},
 	"mixins": [

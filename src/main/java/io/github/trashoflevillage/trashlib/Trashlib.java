@@ -6,7 +6,7 @@ import net.fabricmc.api.ModInitializer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class TrashLib implements ModInitializer {
+public class Trashlib implements ModInitializer {
 	public static final String MOD_ID = "trashlib";
 
 	// This logger is used to write text to the console and the log file.
@@ -16,6 +16,7 @@ public class TrashLib implements ModInitializer {
 
 	@Override
 	public void onInitialize() {
-		TrashlibFeatures.register();
+		TrashlibFeatures.registerAll();
+		TrashlibCommands.registerAll();
 	}
 }
