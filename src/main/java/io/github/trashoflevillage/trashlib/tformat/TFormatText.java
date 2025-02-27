@@ -59,6 +59,8 @@ public class TFormatText {
         } catch (Exception e) {
             return Text.literal(string);
         }
+        // temporary I think?
+        return Text.literal(string);
     }
 
     public TagData getTag(String str) {
