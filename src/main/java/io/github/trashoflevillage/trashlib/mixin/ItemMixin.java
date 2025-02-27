@@ -1,6 +1,5 @@
 package io.github.trashoflevillage.trashlib.mixin;
 
-import io.github.trashoflevillage.trashlib.tformat.TFormatText;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.tooltip.TooltipType;
@@ -27,7 +26,7 @@ public class ItemMixin {
                 Text line = Text.translatable(translationKey);
 
                 if (!line.asTruncatedString(translationKey.length()).equals(translationKey)) {
-                    tooltip.add(new TFormatText(line.getString()).parse());
+                    tooltip.add(line.getWithStyle(Style.EMPTY.withColor(Colors.GRAY)).getFirst());
                     lineNum++;
                 } else break;
             }
