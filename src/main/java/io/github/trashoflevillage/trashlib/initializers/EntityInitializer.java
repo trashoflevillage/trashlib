@@ -1,5 +1,6 @@
 package io.github.trashoflevillage.trashlib.initializers;
 
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.SpawnGroup;
 import net.minecraft.registry.Registries;
@@ -20,10 +21,11 @@ public class EntityInitializer extends AbstractInitializer {
         );
     }
 
-    public EntityType<?> register(String name, RegistryKey<EntityType<?>> key, EntityType.Builder<?> builder) {
-        return Registry.register(
+    @SuppressWarnings("unchecked")
+    public <T extends Entity> EntityType<T> register(String name, RegistryKey<EntityType<?>> key, EntityType.Builder<?> builder) {
+        return (EntityType<T>)Registry.register(
                 Registries.ENTITY_TYPE,
-                Identifier.of(MOD_ID, "herobrine"),
+                Identifier.of(MOD_ID, name),
                 builder.build(key));
     }
 }
