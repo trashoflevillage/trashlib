@@ -10,11 +10,10 @@ import net.minecraft.registry.RegistryKeys;
 import net.minecraft.util.Identifier;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.function.Function;
 
 public class BlockInitializer extends AbstractInitializer {
-    private final ArrayList<ItemConvertible> registeredBlocks = new ArrayList<>();
+    private final ArrayList<ItemConvertible> registeredItems = new ArrayList<>();
 
     public BlockInitializer(String modId) {
         super(modId);
@@ -24,19 +23,20 @@ public class BlockInitializer extends AbstractInitializer {
         RegistryKey<Block> key = RegistryKey.of(RegistryKeys.BLOCK, Identifier.of(MOD_ID, name));
         B block = factory.apply(settings.registryKey(key));
 
-        if (hasBlockItem)
+        if (hasBlockItem) {
             new ItemInitializer(MOD_ID).registerBlockItem(name, block);
+            registeredItems.add(block);
+        }
 
         return Registry.register(Registries.BLOCK, key, block);
     }
 
     public <B extends Block> B register(String name, Function<AbstractBlock.Settings, B> factory, AbstractBlock.Settings settings) {
         B b = register(name, factory, settings, true);
-        registeredBlocks.add(b);
         return b;
     }
 
-    public ArrayList<ItemConvertible> getRegisteredBlocks() {
-        return registeredBlocks;
+    public ArrayList<ItemConvertible> getRegisteredItems() {
+        return registeredItems;
     }
 }
