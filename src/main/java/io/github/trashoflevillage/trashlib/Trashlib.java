@@ -1,8 +1,5 @@
 package io.github.trashoflevillage.trashlib;
 
-import io.github.trashoflevillage.trashlib.tformat.TFormatTag;
-import io.github.trashoflevillage.trashlib.tformat.TFormatText;
-import io.github.trashoflevillage.trashlib.tformat.tags.SimpleColorTag;
 import io.github.trashoflevillage.trashlib.worldgen.features.TrashlibFeatures;
 import net.fabricmc.api.ModInitializer;
 
@@ -24,14 +21,6 @@ public class Trashlib implements ModInitializer {
 	@Override
 	public void onInitialize() {
 		TrashlibFeatures.registerAll();
-		registerTFormatTags();
 		if (FabricLoader.getInstance().isDevelopmentEnvironment()) TrashlibCommands.registerAll();
-	}
-
-
-	public static void registerTFormatTags() {
-		TFormatText.registerTag(new SimpleColorTag(Colors.RED), "red");
-		TFormatText.registerTag(new SimpleColorTag(Colors.GREEN), "green");
-		TFormatText.registerTag(new SimpleColorTag(Colors.BLUE), "blue");
 	}
 }
