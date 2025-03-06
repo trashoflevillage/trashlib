@@ -2,15 +2,20 @@ package io.github.trashoflevillage.trashlib.initializers;
 
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
+import net.minecraft.item.ItemConvertible;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.util.Identifier;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.function.Function;
 
 public class BlockInitializer extends AbstractInitializer {
+    private final ArrayList<ItemConvertible> registeredBlocks = new ArrayList<>();
+
     public BlockInitializer(String modId) {
         super(modId);
     }
@@ -26,6 +31,12 @@ public class BlockInitializer extends AbstractInitializer {
     }
 
     public <B extends Block> B register(String name, Function<AbstractBlock.Settings, B> factory, AbstractBlock.Settings settings) {
-        return register(name, factory, settings, true);
+        B b = register(name, factory, settings, true);
+        registeredBlocks.add(b);
+        return b;
+    }
+
+    public ArrayList<ItemConvertible> getRegisteredBlocks() {
+        return registeredBlocks;
     }
 }

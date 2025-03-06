@@ -1,13 +1,16 @@
 package io.github.trashoflevillage.trashlib.initializers;
 
 import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
-import net.minecraft.item.ItemConvertible;
-import net.minecraft.item.ItemGroup;
-import net.minecraft.item.ItemStack;
+import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
+import net.minecraft.item.*;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
+import net.minecraft.registry.RegistryKey;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class ItemGroupInitializer extends AbstractInitializer {
     public ItemGroupInitializer(String modId) {
@@ -23,5 +26,24 @@ public class ItemGroupInitializer extends AbstractInitializer {
                         }))
                         .build()
         );
+    }
+
+    @SafeVarargs
+    public final ItemGroup register(String path, String translationKey, ItemConvertible icon, ArrayList<ItemConvertible>... contents) {
+        return Registry.register(Registries.ITEM_GROUP, Identifier.of(MOD_ID, path),
+                FabricItemGroup.builder().displayName(Text.translatable(translationKey))
+                        .icon(() -> new ItemStack(icon))
+                        .entries(((displayContext, entries) -> {
+                            for (ArrayList<ItemConvertible> items : contents) for (ItemConvertible i : items) entries.add(i);
+                        }))
+                        .build()
+        );
+    }
+
+    public static void addItemsToItemGroup(RegistryKey<ItemGroup> group, ItemConvertible... items) {
+        ItemGroupEvents.modifyEntriesEvent(group).register(content -> {
+            for (ItemConvertible i : items)
+                content.add(i);
+        });
     }
 }
