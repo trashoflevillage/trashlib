@@ -23,9 +23,11 @@ public class EntityInitializer extends AbstractInitializer {
 
     @SuppressWarnings("unchecked")
     public <T extends Entity> EntityType<T> register(String name, RegistryKey<EntityType<?>> key, EntityType.Builder<?> builder) {
+        Identifier id = Identifier.of(MOD_ID, name);
+        for (String alias : ALIAS_MOD_IDS) Registries.ENTITY_TYPE.addAlias(Identifier.of(alias, id.getPath()), id);
         return (EntityType<T>)Registry.register(
                 Registries.ENTITY_TYPE,
-                Identifier.of(MOD_ID, name),
+                id,
                 builder.build(key));
     }
 }

@@ -27,7 +27,8 @@ public class ItemInitializer extends AbstractInitializer {
 
 
     public <I extends Item> I register(String name, Function<Item.Settings, I> factory, Item.Settings settings) {
-        RegistryKey<Item> key = RegistryKey.of(RegistryKeys.ITEM, Identifier.of(MOD_ID, name));
+        Identifier id = Identifier.of(MOD_ID, name);
+        RegistryKey<Item> key = RegistryKey.of(RegistryKeys.ITEM, id);
         I item = factory.apply(settings.registryKey(key));
 
         if (item instanceof BlockItem blockItem) {
@@ -35,6 +36,7 @@ public class ItemInitializer extends AbstractInitializer {
         }
 
         I output = Registry.register(Registries.ITEM, key, item);
+        for (String alias : ALIAS_MOD_IDS) Registries.ITEM.addAlias(Identifier.of(alias, id.getPath()), id);
         registeredItems.add(output);
         return output;
     }

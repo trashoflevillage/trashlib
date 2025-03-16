@@ -17,6 +17,7 @@ public class BlockEntityInitializer extends AbstractInitializer {
             String name, FabricBlockEntityTypeBuilder.Factory<? extends T> entityFactory,
             Block... blocks) {
         Identifier id = Identifier.of(MOD_ID, name);
+        for (String alias : ALIAS_MOD_IDS) Registries.BLOCK_ENTITY_TYPE.addAlias(Identifier.of(alias, id.getPath()), id);
         return Registry.register(Registries.BLOCK_ENTITY_TYPE, id, FabricBlockEntityTypeBuilder.<T>create(entityFactory, blocks).build());
     }
 }

@@ -12,6 +12,8 @@ public class FeatureInitializer extends AbstractInitializer {
     }
 
     public <C extends FeatureConfig, F extends Feature<C>> F register(String name, F feature) {
-        return Registry.register(Registries.FEATURE, Identifier.of(MOD_ID, name), feature);
+        Identifier id = Identifier.of(MOD_ID, name);
+        for (String alias : ALIAS_MOD_IDS) Registries.FEATURE.addAlias(Identifier.of(alias, id.getPath()), id);
+        return Registry.register(Registries.FEATURE, id, feature);
     }
 }
