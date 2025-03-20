@@ -16,7 +16,7 @@
   "environment": "*",
   "entrypoints": {
     "main": [
-      "io.github.trashoflevillage.trashlib.fabric.ExampleModFabric"
+      "io.github.trashoflevillage.trashlib.fabric.TrashlibFabric"
     ],
     "client": [
       "io.github.trashoflevillage.trashlib.fabric.client.ExampleModFabricClient"
