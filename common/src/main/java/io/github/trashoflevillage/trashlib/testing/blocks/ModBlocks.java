@@ -1,4 +1,4 @@
-package io.github.trashoflevillage.trashlib.blocks;
+package io.github.trashoflevillage.trashlib.testing.blocks;
 
 import dev.architectury.registry.registries.RegistrySupplier;
 import io.github.trashoflevillage.trashlib.Trashlib;

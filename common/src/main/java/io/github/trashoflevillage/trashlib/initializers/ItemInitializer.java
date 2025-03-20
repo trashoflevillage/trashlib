@@ -34,11 +34,11 @@ public class ItemInitializer extends AbstractInitializer {
         return item;
     }
 
-    public RegistrySupplier<Item> registerBlockItem(String name, Block block) {
-        return register(name, (s) -> new BlockItem(block, s), new Item.Settings().useBlockPrefixedTranslationKey());
+    public RegistrySupplier<Item> registerBlockItem(String name, RegistrySupplier<Block> block) {
+        return register(name, (s) -> new BlockItem(block.get(), s), new Item.Settings().useBlockPrefixedTranslationKey());
     }
 
-    public ArrayList<ItemConvertible> getREGISTERED_ITEMS() {
+    public ArrayList<ItemConvertible> getRegisteredItems() {
         return REGISTERED_ITEMS;
     }
 }
