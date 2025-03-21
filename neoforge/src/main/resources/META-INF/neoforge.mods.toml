@@ -7,7 +7,7 @@ license = "MIT"
 modId = "trashlib"
 version = "${version}"
 displayName = "trashlib"
-authors = "Me!"
+authors = "trashoflevillage"
 description = '''
 I hated boilerplate enough to make a library mod.
 '''
