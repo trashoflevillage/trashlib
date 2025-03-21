@@ -1,7 +1,7 @@
 modLoader = "javafml"
 loaderVersion = "[4,)"
 #issueTrackerURL = ""
-license = "Insert License Here"
+license = "MIT"
 
 [[mods]]
 modId = "trashlib"
@@ -9,7 +9,7 @@ version = "${version}"
 displayName = "trashlib"
 authors = "Me!"
 description = '''
-This is an example description! Tell everyone what your mod is about!
+I hated boilerplate enough to make a library mod.
 '''
 #logoFile = ""
 

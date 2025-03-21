@@ -2,6 +2,7 @@ package io.github.trashoflevillage.trashlib.initializers;
 
 import dev.architectury.registry.registries.Registrar;
 import dev.architectury.registry.registries.RegistrySupplier;
+import io.github.trashoflevillage.trashlib.util.AliasedID;
 import net.minecraft.block.Block;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
@@ -13,7 +14,6 @@ import net.minecraft.util.Identifier;
 
 import java.util.ArrayList;
 import java.util.function.Function;
-import java.util.function.Supplier;
 
 public class ItemInitializer extends AbstractInitializer {
     private final ArrayList<ItemConvertible> REGISTERED_ITEMS = new ArrayList();
@@ -30,6 +30,7 @@ public class ItemInitializer extends AbstractInitializer {
     public RegistrySupplier<Item> register(String name, Function<Item.Settings, Item> factory, Item.Settings settings) {
         Identifier id = Identifier.of(MOD_ID, name);
         RegistryKey<Item> key = RegistryKey.of(RegistryKeys.ITEM, id);
+        for (String alias : ALIAS_MOD_IDS) AliasedID.addAlias(Registries.ITEM, Identifier.of(alias, id.getPath()), id);
         RegistrySupplier<Item> item = REGISTRAR.register(id, () -> factory.apply(settings.registryKey(key)));
         return item;
     }

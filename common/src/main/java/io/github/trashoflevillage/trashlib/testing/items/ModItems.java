@@ -6,7 +6,7 @@ import io.github.trashoflevillage.trashlib.initializers.ItemInitializer;
 import net.minecraft.item.Item;
 
 public class ModItems {
-    private static final ItemInitializer initializer = new ItemInitializer(Trashlib.MOD_ID);
+    private static final ItemInitializer initializer = new ItemInitializer(Trashlib.MOD_ID).addModIdAlias("testmod");
 
     public static final RegistrySupplier<Item> TEST_ITEM =
             initializer.register("test_item", Item::new, new Item.Settings());

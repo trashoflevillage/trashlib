@@ -2,6 +2,7 @@ package io.github.trashoflevillage.trashlib.initializers;
 
 import dev.architectury.registry.registries.Registrar;
 import dev.architectury.registry.registries.RegistrySupplier;
+import io.github.trashoflevillage.trashlib.util.AliasedID;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemConvertible;
@@ -32,7 +33,7 @@ public class BlockInitializer extends AbstractInitializer {
             itemInitializer.registerBlockItem(name, block);
         }
 
-        //for (String alias : ALIAS_MOD_IDS) Registries.BLOCK.addAlias(Identifier.of(alias, id.getPath()), id);
+        for (String alias : ALIAS_MOD_IDS) AliasedID.addAlias(Registries.BLOCK, Identifier.of(alias, id.getPath()), id);
         return block;
     }
 
