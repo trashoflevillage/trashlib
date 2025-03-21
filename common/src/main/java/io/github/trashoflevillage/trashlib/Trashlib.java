@@ -1,5 +1,6 @@
 package io.github.trashoflevillage.trashlib;
 
+import dev.architectury.platform.Platform;
 import io.github.trashoflevillage.trashlib.testing.blocks.ModBlocks;
 import io.github.trashoflevillage.trashlib.testing.items.ModItems;
 

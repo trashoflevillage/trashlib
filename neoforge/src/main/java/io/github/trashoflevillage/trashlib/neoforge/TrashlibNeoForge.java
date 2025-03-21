@@ -1,10 +1,12 @@
 package io.github.trashoflevillage.trashlib.neoforge;
 
-import dev.architectury.registry.registries.DeferredRegister;
 import io.github.trashoflevillage.trashlib.util.AliasedID;
+import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.Mod;
 
 import io.github.trashoflevillage.trashlib.Trashlib;
+import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
+import net.neoforged.neoforge.common.NeoForge;
 
 @Mod(Trashlib.MOD_ID)
 public final class TrashlibNeoForge {

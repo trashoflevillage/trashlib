@@ -19,7 +19,7 @@
       "io.github.trashoflevillage.trashlib.fabric.TrashlibFabric"
     ],
     "client": [
-      "io.github.trashoflevillage.trashlib.fabric.client.ExampleModFabricClient"
+      "io.github.trashoflevillage.trashlib.fabric.client.TrashlibFabricClient"
     ]
   },
   "mixins": [
