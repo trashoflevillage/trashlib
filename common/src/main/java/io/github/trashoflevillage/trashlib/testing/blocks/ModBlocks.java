@@ -12,5 +12,11 @@ public class ModBlocks {
     public static final RegistrySupplier<Block> TEST_BLOCK =
             initializer.register("test_block", Block::new, AbstractBlock.Settings.create());
 
-    public static void registerAll() {}
+    public static void registerAll() {
+        registerTransparentBlcoks();
+    }
+
+    private static void registerTransparentBlcoks() {
+        initializer.addTransparentBlocks(TEST_BLOCK);
+    }
 }

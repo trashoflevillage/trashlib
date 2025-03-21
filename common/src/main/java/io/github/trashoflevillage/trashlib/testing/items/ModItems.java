@@ -11,5 +11,7 @@ public class ModItems {
     public static final RegistrySupplier<Item> TEST_ITEM =
             initializer.register("test_item", Item::new, new Item.Settings());
 
-    public static void registerAll() {}
+    public static void registerAll() {
+
+    }
 }

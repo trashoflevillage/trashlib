@@ -15,8 +15,6 @@ import net.neoforged.fml.common.Mod;
 @Mod(value = Trashlib.MOD_ID, dist = Dist.CLIENT)
 public class TrashlibClientNeoForge {
     public TrashlibClientNeoForge(IEventBus modBus) {
-        for (RegistrySupplier<Block> i : BlockInitializer.getTransparentBlocks()) {
-            RenderTypeRegistry.register(RenderLayer.CUTOUT, i.get());
-        }
+
     }
 }

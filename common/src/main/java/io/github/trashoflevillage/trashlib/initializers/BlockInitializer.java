@@ -6,7 +6,6 @@ import io.github.trashoflevillage.trashlib.util.AliasedID;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemConvertible;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryKeys;
@@ -49,9 +48,12 @@ public class BlockInitializer extends AbstractInitializer {
         return REGISTERED_ITEMS;
     }
 
-    public BlockInitializer addTransparentBlocks(RegistrySupplier<Block>... blocks) {
+    /// This method only affects Fabric, though it's safe to use in Neoforge.
+    ///
+    /// To make a block transparent in NeoForge, set the field "render_type" to "cutout" in your block's model.
+    @SafeVarargs
+    public final void addTransparentBlocks(RegistrySupplier<Block>... blocks) {
         TRANSPARENT.addAll(Arrays.asList(blocks));
-        return this;
     }
 
     public static ArrayList<RegistrySupplier<Block>> getTransparentBlocks() {
