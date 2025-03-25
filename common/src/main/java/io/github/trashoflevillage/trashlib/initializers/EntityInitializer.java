@@ -21,25 +21,8 @@ public class EntityInitializer extends AbstractInitializer {
         super(modId);
     }
 
-//    public RegistryKey<EntityType<?>> registerKey(String name) {
-//        return RegistryKey.of(
-//                RegistryKeys.ENTITY_TYPE,
-//                Identifier.of(MOD_ID, name)
-//        );
-//    }
-//
-//    @SuppressWarnings("unchecked")
-//    public <T extends Entity> EntityType<T> register(String name, RegistryKey<EntityType<?>> key, EntityType.Builder<?> builder) {
-//        Identifier id = Identifier.of(MOD_ID, name);
-//        //for (String alias : ALIAS_MOD_IDS) Registries.ENTITY_TYPE.addAlias(Identifier.of(alias, id.getPath()), id);
-//        return (EntityType<T>)Registry.register(
-//                Registries.ENTITY_TYPE,
-//                id,
-//                builder.build(key));
-//    }
-
-    public RegistrySupplier<EntityType<?>> register(String name, Supplier<EntityType<?>> factory /*RegistryKey<EntityType<?>> key, EntityType.Builder<?> builder*/) {
-        RegistrySupplier<EntityType<?>> entity = REGISTRAR.register(Identifier.of(MOD_ID, name), factory);
+    public <E extends Entity> RegistrySupplier<EntityType<E>> register(String name, Supplier<EntityType<E>> factory) {
+        RegistrySupplier<EntityType<E>> entity = this.REGISTRAR.register(Identifier.of(this.MOD_ID, name), factory);
         return entity;
     }
 }
