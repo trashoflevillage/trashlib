@@ -15,7 +15,7 @@ public class TagInitializer<T> extends AbstractInitializer {
         this.registryRef = registryRef;
     }
 
-    private TagKey<T> register(String id) {
+    public TagKey<T> register(String id) {
         return TagKey.of(registryRef, Identifier.of(MOD_ID, id));
     }
 }
