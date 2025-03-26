@@ -21,8 +21,8 @@ public class EntityInitializer extends AbstractInitializer {
         super(modId);
     }
 
-    public <E extends Entity> RegistrySupplier<EntityType<E>> register(String name, Supplier<EntityType<E>> factory) {
-        RegistrySupplier<EntityType<E>> entity = this.REGISTRAR.register(Identifier.of(this.MOD_ID, name), factory);
+    public RegistrySupplier<EntityType<?>> register(String name, Supplier<EntityType<?>> factory /*RegistryKey<EntityType<?>> key, EntityType.Builder<?> builder*/) {
+        RegistrySupplier<EntityType<?>> entity = REGISTRAR.register(Identifier.of(MOD_ID, name), factory);
         return entity;
     }
 }
