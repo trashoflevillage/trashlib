@@ -6,7 +6,7 @@ import net.minecraft.registry.RegistryKeys;
 import net.minecraft.registry.tag.TagKey;
 
 public class ConventionalTags {
-    static class Items {
+    public static class Items {
         private static final TagInitializer<Item> initializer = new TagInitializer<>("c", RegistryKeys.ITEM);
 
         public static final TagKey<Item> CONCRETE_POWDERS = initializer.register("concrete_powders");
