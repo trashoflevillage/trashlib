@@ -35,6 +35,10 @@ public class ItemInitializer extends AbstractInitializer {
         return item;
     }
 
+    public RegistrySupplier<Item> registerBlockItem(String name, RegistrySupplier<Block> block, Item.Settings settings) {
+        return register(name, (s) -> new BlockItem(block.get(), s), settings.useBlockPrefixedTranslationKey());
+    }
+
     public RegistrySupplier<Item> registerBlockItem(String name, RegistrySupplier<Block> block) {
         return register(name, (s) -> new BlockItem(block.get(), s), new Item.Settings().useBlockPrefixedTranslationKey());
     }
