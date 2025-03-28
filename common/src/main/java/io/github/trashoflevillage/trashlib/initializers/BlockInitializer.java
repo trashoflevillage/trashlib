@@ -25,23 +25,33 @@ public class BlockInitializer extends AbstractInitializer {
         super(modId);
     }
 
-    public RegistrySupplier<Block> register(String name, Function<AbstractBlock.Settings, Block> factory, AbstractBlock.Settings settings, boolean hasBlockItem) {
+    ///
+    /// Registers a block.
+    /// Leave the fourth argument empty to use default block item settings.
+    /// Set the fourth argument to null for no block item.
+    ///
+    public RegistrySupplier<Block> register(String name, Function<AbstractBlock.Settings, Block> factory, AbstractBlock.Settings settings, Item.Settings itemSettings) {
         Identifier id = Identifier.of(MOD_ID, name);
         RegistryKey<Block> key = RegistryKey.of(RegistryKeys.BLOCK, id);
         RegistrySupplier<Block> block = REGISTRAR.register(id, () -> factory.apply(settings.registryKey(key)));
 
-        if (hasBlockItem) {
+        if (itemSettings != null) {
             ItemInitializer itemInitializer = new ItemInitializer(MOD_ID);
             for (String alias : ALIAS_MOD_IDS) itemInitializer.addModIdAlias(alias);
-            REGISTERED_ITEMS.add(itemInitializer.registerBlockItem(name, block));
+            REGISTERED_ITEMS.add(itemInitializer.registerBlockItem(name, block, itemSettings));
         }
 
         for (String alias : ALIAS_MOD_IDS) AliasedID.addAlias(Registries.BLOCK, Identifier.of(alias, id.getPath()), id);
         return block;
     }
 
+    ///
+    /// Registers a block.
+    /// Leave the fourth argument empty to use default block item settings.
+    /// Set the fourth argument to null for no block item.
+    ///
     public RegistrySupplier<Block> register(String name, Function<AbstractBlock.Settings, Block> factory, AbstractBlock.Settings settings) {
-        return register(name, factory, settings, true);
+        return register(name, factory, settings, new Item.Settings());
     }
 
     public ArrayList<RegistrySupplier<Item>> getRegisteredItems() {
