@@ -9,7 +9,7 @@ import net.minecraft.registry.tag.TagKey;
 
 public class ConventionalTags {
     public static class Items {
-        private static final TagInitializer<Item> initializer = new TagInitializer<>("c", RegistryKeys.ITEM);
+        private static final TagInitializer<Item> INITIALIZER = new TagInitializer<>("c", RegistryKeys.ITEM);
 
         public static final TagKey<Item> CONCRETE_POWDERS = of("concrete_powders");
         public static final TagKey<Item> CONCRETE = of("concrete");
@@ -19,15 +19,15 @@ public class ConventionalTags {
         public static final TagKey<Item> GLAZED_TERRACOTTAS = of("glazed_terracottas");
         
         public static TagKey<Item> of(String name) {
-            return initializer.register(name);
+            return INITIALIZER.register(name);
         }
     }
 
     public static class Blocks {
-        private static final TagInitializer<Block> initializer = new TagInitializer<>("c", RegistryKeys.BLOCK);
+        private static final TagInitializer<Block> INITIALIZER = new TagInitializer<>("c", RegistryKeys.BLOCK);
 
         public static TagKey<Block> of(String name) {
-            return initializer.register(name);
+            return INITIALIZER.register(name);
         }
     }
 

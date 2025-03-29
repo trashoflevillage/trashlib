@@ -25,18 +25,12 @@ public class ItemGroupInitializer extends AbstractInitializer {
         super(modId);
     }
 
-    public RegistrySupplier<ItemGroup> register(String name, ItemStack icon, ItemStack... contents) {
+    public RegistrySupplier<ItemGroup> register(String name, ItemStack icon) {
         Identifier id = Identifier.of(MOD_ID, name);
         RegistrySupplier<ItemGroup> itemGroup = REGISTRAR.register(id, () -> CreativeTabRegistry.create(
                 Text.translatable("itemgroup." + MOD_ID + "." + name),
                 icon::copy
         ));
         return itemGroup;
-    }
-
-    public RegistrySupplier<ItemGroup> register(String name, ItemStack icon, ItemConvertible... contents) {
-        ItemStack[] stacks = new ItemStack[contents.length];
-        for (int i = 0; i < contents.length; i++) stacks[i] = contents[i].asItem().getDefaultStack();
-        return register(name, icon, stacks);
     }
 }

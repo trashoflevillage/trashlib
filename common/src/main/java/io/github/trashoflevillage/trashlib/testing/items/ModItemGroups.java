@@ -10,8 +10,7 @@ public class ModItemGroups {
     private static final ItemGroupInitializer INITIALIZER = new ItemGroupInitializer(Trashlib.MOD_ID);
 
     public static final RegistrySupplier<ItemGroup> TEST_GROUP = INITIALIZER.register(
-            "test", Items.POPPY.getDefaultStack(), Items.SADDLE
-            //ModItems.TEST_ITEM.get(), ModBlocks.TEST_BLOCK.get()
+            "test", Items.POPPY.getDefaultStack()
     );
 
     public static void registerAll() {}
