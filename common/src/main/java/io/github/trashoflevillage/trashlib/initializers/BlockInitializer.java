@@ -6,6 +6,7 @@ import io.github.trashoflevillage.trashlib.util.AliasedID;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
 import net.minecraft.client.color.block.BlockColorProvider;
+import net.minecraft.client.render.RenderLayer;
 import net.minecraft.item.Item;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.RegistryKey;
@@ -13,12 +14,11 @@ import net.minecraft.registry.RegistryKeys;
 import net.minecraft.util.Identifier;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.function.Function;
 
 public class BlockInitializer extends AbstractInitializer {
-    private static final ArrayList<RegistrySupplier<Block>> TRANSPARENT = new ArrayList<>();
+    private static final HashMap<RegistrySupplier<Block>, RenderLayer> TRANSPARENT = new HashMap<>();
     private static final HashMap<BlockColorProvider, RegistrySupplier<Block>[]> COLOR_PROVIDERS = new HashMap<>();
 
     private final ArrayList<RegistrySupplier<Item>> REGISTERED_ITEMS = new ArrayList<>();
@@ -65,8 +65,8 @@ public class BlockInitializer extends AbstractInitializer {
     ///
     /// To make a block transparent in NeoForge, set the field "render_type" to "cutout" in your block's model.
     @SafeVarargs
-    public final void addTransparentBlocks(RegistrySupplier<Block>... blocks) {
-        TRANSPARENT.addAll(Arrays.asList(blocks));
+    public final void addTransparentBlocks(RenderLayer layer, RegistrySupplier<Block>... blocks) {
+        for (RegistrySupplier<Block> b : blocks) TRANSPARENT.put(b, layer);
     }
 
     @SafeVarargs
@@ -76,7 +76,7 @@ public class BlockInitializer extends AbstractInitializer {
         );
     }
 
-    public static ArrayList<RegistrySupplier<Block>> getTransparentBlocks() {
+    public static HashMap<RegistrySupplier<Block>, RenderLayer> getTransparentBlocks() {
         return TRANSPARENT;
     }
 

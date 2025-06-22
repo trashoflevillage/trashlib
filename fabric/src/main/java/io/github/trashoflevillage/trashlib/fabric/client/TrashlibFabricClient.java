@@ -9,11 +9,14 @@ import net.minecraft.block.Block;
 import net.minecraft.client.color.block.BlockColorProvider;
 import net.minecraft.client.render.RenderLayer;
 
+import java.util.HashMap;
+
 public final class TrashlibFabricClient implements ClientModInitializer {
     @Override
     public void onInitializeClient() {
-        for (RegistrySupplier<Block> i : BlockInitializer.getTransparentBlocks())
-            BlockRenderLayerMap.INSTANCE.putBlock(i.get(), RenderLayer.getCutout());
+        HashMap<RegistrySupplier<Block>, RenderLayer> transparentBlocks = BlockInitializer.getTransparentBlocks();
+        for (RegistrySupplier<Block> b : transparentBlocks.keySet())
+            BlockRenderLayerMap.INSTANCE.putBlock(b.get(), transparentBlocks.get(b));
 
         for (BlockColorProvider p : BlockInitializer.getColorProviders().keySet()) {
             for (RegistrySupplier<Block> b : BlockInitializer.getColorProviders().get(p)) {
