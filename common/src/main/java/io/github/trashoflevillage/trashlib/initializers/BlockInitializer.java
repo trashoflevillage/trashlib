@@ -5,6 +5,7 @@ import dev.architectury.registry.registries.RegistrySupplier;
 import io.github.trashoflevillage.trashlib.util.AliasedID;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
+import net.minecraft.client.color.block.BlockColorProvider;
 import net.minecraft.item.Item;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.RegistryKey;
@@ -13,10 +14,12 @@ import net.minecraft.util.Identifier;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.function.Function;
 
 public class BlockInitializer extends AbstractInitializer {
     private static final ArrayList<RegistrySupplier<Block>> TRANSPARENT = new ArrayList<>();
+    private static final HashMap<BlockColorProvider, RegistrySupplier<Block>[]> COLOR_PROVIDERS = new HashMap<>();
 
     private final ArrayList<RegistrySupplier<Item>> REGISTERED_ITEMS = new ArrayList<>();
     private final Registrar<Block> REGISTRAR = MANAGER.get().get(Registries.BLOCK);
@@ -66,7 +69,18 @@ public class BlockInitializer extends AbstractInitializer {
         TRANSPARENT.addAll(Arrays.asList(blocks));
     }
 
+    @SafeVarargs
+    public final void addColorProvider(BlockColorProvider provider, RegistrySupplier<Block>... blocks) {
+        COLOR_PROVIDERS.put(
+                provider, blocks
+        );
+    }
+
     public static ArrayList<RegistrySupplier<Block>> getTransparentBlocks() {
         return TRANSPARENT;
+    }
+
+    public static HashMap<BlockColorProvider, RegistrySupplier<Block>[]> getColorProviders() {
+        return COLOR_PROVIDERS;
     }
 }
