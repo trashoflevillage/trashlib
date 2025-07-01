@@ -17,6 +17,7 @@ import net.minecraft.util.Identifier;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.function.Supplier;
 
 public class ItemGroupInitializer extends AbstractInitializer {
     private final Registrar<ItemGroup> REGISTRAR = MANAGER.get().get(Registries.ITEM_GROUP);
@@ -25,11 +26,11 @@ public class ItemGroupInitializer extends AbstractInitializer {
         super(modId);
     }
 
-    public RegistrySupplier<ItemGroup> register(String name, ItemStack icon) {
+    public RegistrySupplier<ItemGroup> register(String name, Supplier<ItemStack> iconSupplier) {
         Identifier id = Identifier.of(MOD_ID, name);
         RegistrySupplier<ItemGroup> itemGroup = REGISTRAR.register(id, () -> CreativeTabRegistry.create(
                 Text.translatable("itemgroup." + MOD_ID + "." + name),
-                icon::copy
+                iconSupplier
         ));
         return itemGroup;
     }
