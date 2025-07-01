@@ -11,23 +11,20 @@ import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.util.Identifier;
 
+import java.util.List;
 import java.util.Set;
+import java.util.function.Supplier;
 
 public class BlockEntityInitializerImpl {
     public static <T extends BlockEntity> RegistrySupplier<BlockEntityType<T>> register(
-            String modId,
             String name,
             BlockEntityInitializer.BlockEntityFactory<T> factory,
             DeferredRegister<BlockEntityType<?>> deferredRegister,
-            Set<Block> blocks
+            Supplier<List<Block>> blockSupplier
     )  {
         return deferredRegister.register(
                 name,
-                () -> Registry.register(
-                        Registries.BLOCK_ENTITY_TYPE,
-                        Identifier.of(modId, name),
-                        FabricBlockEntityTypeBuilder.create(factory::create).build()
-                )
+                () -> FabricBlockEntityTypeBuilder.create(factory::create).addBlocks(blockSupplier.get()).build()
         );
     }
 }
