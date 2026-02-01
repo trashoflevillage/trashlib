@@ -16,14 +16,14 @@ I hated boilerplate enough to make a library mod.
 [[dependencies.trashlib]]
 modId = "neoforge"
 type = "required"
-versionRange = "[21.4,)"
+versionRange = "[21.10,)"
 ordering = "NONE"
 side = "BOTH"
 
 [[dependencies.trashlib]]
 modId = "minecraft"
 type = "required"
-versionRange = "[1.21.4,)"
+versionRange = "[1.21.10,)"
 ordering = "NONE"
 side = "BOTH"
 
