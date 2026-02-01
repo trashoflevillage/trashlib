@@ -4,6 +4,8 @@ import dev.architectury.registry.registries.Registrar;
 import dev.architectury.registry.registries.RegistrySupplier;
 import io.github.trashoflevillage.trashlib.util.AliasedID;
 import net.minecraft.block.Block;
+import net.minecraft.client.color.block.BlockColorProvider;
+import net.minecraft.client.render.item.tint.TintSource;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemConvertible;
@@ -13,11 +15,13 @@ import net.minecraft.registry.RegistryKeys;
 import net.minecraft.util.Identifier;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.function.Function;
 
 public class ItemInitializer extends AbstractInitializer {
     private final ArrayList<ItemConvertible> REGISTERED_ITEMS = new ArrayList();
     private final Registrar<Item> REGISTRAR = MANAGER.get().get(Registries.ITEM);
+    private static final HashMap<TintSource, Identifier> COLOR_PROVIDERS = new HashMap<>();
 
     public ItemInitializer(String modId) {
         super(modId);
@@ -45,5 +49,15 @@ public class ItemInitializer extends AbstractInitializer {
 
     public ArrayList<ItemConvertible> getRegisteredItems() {
         return REGISTERED_ITEMS;
+    }
+
+    public final void addColorProvider(String name, TintSource source) {
+        COLOR_PROVIDERS.put(
+                source, Identifier.of(this.MOD_ID, name)
+        );
+    }
+
+    public static HashMap<TintSource, Identifier> getColorProviders() {
+        return COLOR_PROVIDERS;
     }
 }
