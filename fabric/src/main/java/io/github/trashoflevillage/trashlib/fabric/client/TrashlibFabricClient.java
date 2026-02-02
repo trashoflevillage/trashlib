@@ -1,6 +1,7 @@
 package io.github.trashoflevillage.trashlib.fabric.client;
 
 import dev.architectury.registry.registries.RegistrySupplier;
+import io.github.trashoflevillage.trashlib.Trashlib;
 import io.github.trashoflevillage.trashlib.initializers.BlockInitializer;
 import io.github.trashoflevillage.trashlib.initializers.ItemInitializer;
 import net.fabricmc.api.ClientModInitializer;
@@ -35,5 +36,7 @@ public final class TrashlibFabricClient implements ClientModInitializer {
         for (TintSource p : ItemInitializer.getColorProviders().keySet()) {
             TintSourceTypes.ID_MAPPER.put(ItemInitializer.getColorProviders().get(p), p.getCodec());
         }
+
+        Trashlib.initClient();
     }
 }

@@ -17,5 +17,7 @@ import net.neoforged.fml.common.Mod;
 public class TrashlibClientNeoForge {
     public TrashlibClientNeoForge(IEventBus modBus) {
         modBus.addListener(EventPriority.LOWEST, TrashlibClientEvents::registerBlockColorHandlers);
+
+        Trashlib.initClient();
     }
 }
