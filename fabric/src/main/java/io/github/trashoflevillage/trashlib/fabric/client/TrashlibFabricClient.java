@@ -1,5 +1,6 @@
 package io.github.trashoflevillage.trashlib.fabric.client;
 
+import com.mojang.serialization.MapCodec;
 import dev.architectury.registry.registries.RegistrySupplier;
 import io.github.trashoflevillage.trashlib.Trashlib;
 import io.github.trashoflevillage.trashlib.initializers.BlockInitializer;
@@ -21,6 +22,8 @@ import java.util.HashMap;
 public final class TrashlibFabricClient implements ClientModInitializer {
     @Override
     public void onInitializeClient() {
+        Trashlib.initClient();
+
         HashMap<RegistrySupplier<Block>, BlockRenderLayer> transparentBlocks = BlockInitializer.getTransparentBlocks();
         for (RegistrySupplier<Block> b : transparentBlocks.keySet())
             BlockRenderLayerMap.putBlock(b.get(), transparentBlocks.get(b));
@@ -33,10 +36,9 @@ public final class TrashlibFabricClient implements ClientModInitializer {
             }
         }
 
-        for (TintSource p : ItemInitializer.getColorProviders().keySet()) {
-            TintSourceTypes.ID_MAPPER.put(ItemInitializer.getColorProviders().get(p), p.getCodec());
+        for (MapCodec<? extends TintSource> codec : ItemInitializer.getColorProviders().keySet()) {
+            Identifier id = ItemInitializer.getColorProviders().get(codec);
+            TintSourceTypes.ID_MAPPER.put(id, codec);
         }
-
-        Trashlib.initClient();
     }
 }

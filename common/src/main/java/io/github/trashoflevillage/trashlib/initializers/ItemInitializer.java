@@ -1,5 +1,6 @@
 package io.github.trashoflevillage.trashlib.initializers;
 
+import com.mojang.serialization.MapCodec;
 import dev.architectury.registry.registries.Registrar;
 import dev.architectury.registry.registries.RegistrySupplier;
 import io.github.trashoflevillage.trashlib.util.AliasedID;
@@ -21,7 +22,7 @@ import java.util.function.Function;
 public class ItemInitializer extends AbstractInitializer {
     private final ArrayList<ItemConvertible> REGISTERED_ITEMS = new ArrayList();
     private final Registrar<Item> REGISTRAR = MANAGER.get().get(Registries.ITEM);
-    private static final HashMap<TintSource, Identifier> COLOR_PROVIDERS = new HashMap<>();
+    private static final HashMap<MapCodec<? extends TintSource>, Identifier> COLOR_PROVIDERS = new HashMap<>();
 
     public ItemInitializer(String modId) {
         super(modId);
@@ -51,13 +52,13 @@ public class ItemInitializer extends AbstractInitializer {
         return REGISTERED_ITEMS;
     }
 
-    public final void addColorProvider(String name, TintSource source) {
+    public final void addColorProvider(String name, MapCodec<? extends TintSource> codec) {
         COLOR_PROVIDERS.put(
-                source, Identifier.of(this.MOD_ID, name)
+                codec, Identifier.of(this.MOD_ID, name)
         );
     }
 
-    public static HashMap<TintSource, Identifier> getColorProviders() {
+    public static HashMap<MapCodec<? extends TintSource>, Identifier> getColorProviders() {
         return COLOR_PROVIDERS;
     }
 }

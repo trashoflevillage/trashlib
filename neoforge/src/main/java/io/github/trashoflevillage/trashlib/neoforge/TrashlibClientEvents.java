@@ -1,5 +1,6 @@
 package io.github.trashoflevillage.trashlib.neoforge;
 
+import com.mojang.serialization.MapCodec;
 import dev.architectury.registry.registries.RegistrySupplier;
 import io.github.trashoflevillage.trashlib.Trashlib;
 import io.github.trashoflevillage.trashlib.initializers.BlockInitializer;
@@ -23,10 +24,11 @@ public class TrashlibClientEvents {
             }
         }
     }
+
     @SubscribeEvent
-    public static void registerItemColorHandlers(RegisterColorHandlersEvent.ItemTintSources event) {
-        for (TintSource p : ItemInitializer.getColorProviders().keySet()) {
-            event.register(ItemInitializer.getColorProviders().get(p), p.getCodec());
+    public static void  registerItemColorHandlers(RegisterColorHandlersEvent.ItemTintSources event) {
+        for (MapCodec<? extends TintSource> p : ItemInitializer.getColorProviders().keySet()) {
+            event.register(ItemInitializer.getColorProviders().get(p), p);
         }
     }
 }
